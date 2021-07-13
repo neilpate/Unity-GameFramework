@@ -11,15 +11,10 @@ public class GUIController : MonoBehaviour
     [SerializeField]
     GameObject mainMenu;
 
- //   event GameController.StateChange gameStateChange;
-    
-    
     // Start is called before the first frame update
     void Start()
     {
-        //  gameStateChange += OnGameStateChange();
-        GameController.StateChangeEvent += OnGameStateChange;
-
+        controller.StateChangeEvent += OnGameStateChange;
     }
 
     private void OnGameStateChange(GameController.State state)
@@ -35,6 +30,7 @@ public class GUIController : MonoBehaviour
                 break;
 
             case (GameController.State.Running):
+                mainMenu.SetActive(false);
                 break;
 
             case (GameController.State.GameOver):

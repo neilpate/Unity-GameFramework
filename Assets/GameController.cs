@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,18 +12,22 @@ public class GameController : MonoBehaviour
     [SerializeField]
     GameObject EnemyTemplate;
 
+    public bool GameOver;
+
     GameObject player;
     GameObject enemy;
 
-    [ShowNonSerializedField]
-    State currentState;
+   // [ShowNonSerializedField]
+    public State currentState;
 
+   // [ShowNonSerializedField]
     public State nextState;
 
+    public State previousState;
+
+
     public delegate void StateChange(State state);
-    public static event StateChange StateChangeEvent;
-
-
+    public event StateChange StateChangeEvent;
 
     public enum State
     {
@@ -31,69 +36,139 @@ public class GameController : MonoBehaviour
         Running,
         GameOver
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-     
 
+    public void OnStartGameClick()
+    {
+        ExitNotStartedState();
+    }
+
+    void UpdateNotStartedState()
+    {
+        if (previousState != State.NotStarted)
+        {
+            EnterNotStartedState();
+        }
+
+        //Nothing to do here, it is controlled by the button click
+    }
+
+    void EnterNotStartedState()
+    {
+        StateChangeEvent(State.NotStarted);
+
+        GameOver = false;
     }
 
 
-
-    public void StartGame()
+    void ExitNotStartedState()
     {
         nextState = State.Starting;
     }
 
-
-    public bool GameJustEnded()
+    void UpdateStartingState()
     {
-        return false;
+        if (previousState != State.Starting)
+        {
+           //This will be true the first time through here
+            EnterStartingState();
+        }
+        
+        //Nothing to do here, the game immediately transitions to the Exit from the Enter
     }
+
+    void EnterStartingState()
+    {
+        StateChangeEvent(State.Starting);
+
+        SpawnPlayer();
+        SpawnEnemies();
+
+        ExitStartingState();
+
+    }
+
+    void ExitStartingState()
+    {
+        nextState = State.Running;
+    }
+
+
+
+    void UpdateRunningState()
+    {
+        //This is the main game loop when the game is running
+        if (GameOver)
+        {
+            ExitRunningState();
+        }
+    }
+    void EnterRunningState()
+    {
+        StateChangeEvent(State.Running);
+    }
+
+    void ExitRunningState()
+    {
+        nextState = State.GameOver;
+    }
+
+
+    void UpdateGameOverState()
+    {
+        if (previousState != State.GameOver)
+        {
+            //This will be true the first time through here
+            EnterGameOverState();
+        }
+
+        ExitGameOverState();
+    }
+
+
+    void EnterGameOverState()
+    {
+        StateChangeEvent(State.GameOver);
+
+        DestroyPlayer();
+        DestroyEnemies();
+    }
+
+
+    void ExitGameOverState()
+    {
+        nextState = State.NotStarted;
+    }
+
+    
 
     // Update is called once per frame
     void Update()
     {
         //Simple state machine
-        
+
+        previousState = currentState;
+        currentState = nextState; 
+
         switch (currentState)
         {
             case State.NotStarted:
-
-                if (nextState == State.Starting)
-                {
-                    currentState = State.Running;
-                    StateChangeEvent(State.Running);
-                
-                }
+                UpdateNotStartedState();
                 break;
 
-              //  if (state == State.Starting)
+            case State.Starting:
+                UpdateStartingState();
+                break;
 
             case State.Running:
-
-                if (GameJustEnded())
-                {
-                    currentState = State.GameOver;
-                    StateChangeEvent(State.GameOver);
-                }
-
-                GameRunningUpdate();
-
+                UpdateRunningState();
                 break;
 
             case State.GameOver:
+                UpdateGameOverState();
                 break;
-
-
         }
     }
 
-    void GameRunningUpdate()
-    {
-        //This is primary game update method
-    }
 
     void SpawnPlayer()
     {
@@ -107,5 +182,14 @@ public class GameController : MonoBehaviour
         enemy.name = "Enemy";
     }
 
+    void DestroyPlayer()
+    {
+        Destroy(player);
+    }
+
+    void DestroyEnemies()
+    {
+        Destroy(enemy);
+    }
 
 }

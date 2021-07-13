@@ -304,7 +304,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5269434464413426426}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OnStartGameClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1189,4 +1189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerTemplate: {fileID: 3647013414858435023, guid: eeb072cf56070914db378ede44de6c7e, type: 3}
   EnemyTemplate: {fileID: 7000321955969135119, guid: aed4401d84eaf004c8a9f3f39c66a16a, type: 3}
+  GameOver: 0
+  currentState: 0
   nextState: 0
