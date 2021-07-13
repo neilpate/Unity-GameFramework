@@ -17,10 +17,10 @@ public class GameController : MonoBehaviour
     GameObject player;
     GameObject enemy;
 
-   // [ShowNonSerializedField]
+    // [ShowNonSerializedField]
     public State currentState;
 
-   // [ShowNonSerializedField]
+    // [ShowNonSerializedField]
     public State nextState;
 
     public State previousState;
@@ -37,10 +37,6 @@ public class GameController : MonoBehaviour
         GameOver
     }
 
-    public void OnStartGameClick()
-    {
-        ExitNotStartedState();
-    }
 
     void UpdateNotStartedState()
     {
@@ -58,7 +54,10 @@ public class GameController : MonoBehaviour
 
         GameOver = false;
     }
-
+    public void OnStartGameClick()
+    {
+        ExitNotStartedState();
+    }
 
     void ExitNotStartedState()
     {
@@ -69,10 +68,10 @@ public class GameController : MonoBehaviour
     {
         if (previousState != State.Starting)
         {
-           //This will be true the first time through here
+            //This will be true the first time through here
             EnterStartingState();
         }
-        
+
         //Nothing to do here, the game immediately transitions to the Exit from the Enter
     }
 
@@ -121,7 +120,7 @@ public class GameController : MonoBehaviour
             EnterGameOverState();
         }
 
-        ExitGameOverState();
+        //Exit is determined by the button click
     }
 
 
@@ -133,13 +132,40 @@ public class GameController : MonoBehaviour
         DestroyEnemies();
     }
 
-
-    void ExitGameOverState()
+    public void OnGameOverPlayAgainClick()
     {
+        ExitGameOverState(true);
+    }
+
+    public void OnGameOverQuitClick()
+    {
+        ExitGameOverState(false);
+    }
+
+
+
+    void ExitGameOverState(bool playAgain)
+    {
+        GameOver = false;
+
+        if (playAgain)
+        {
+            nextState = State.Starting;
+
+        }
+        else
+        {
+            nextState = State.NotStarted;
+        }
+    }
+
+
+    public void Start()
+    {
+        currentState = State.GameOver;
         nextState = State.NotStarted;
     }
 
-    
 
     // Update is called once per frame
     void Update()
@@ -147,7 +173,7 @@ public class GameController : MonoBehaviour
         //Simple state machine
 
         previousState = currentState;
-        currentState = nextState; 
+        currentState = nextState;
 
         switch (currentState)
         {

@@ -11,6 +11,9 @@ public class GUIController : MonoBehaviour
     [SerializeField]
     GameObject mainMenu;
 
+    [SerializeField]
+    GameObject gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,18 +26,19 @@ public class GUIController : MonoBehaviour
         {
             case (GameController.State.NotStarted):
                 mainMenu.SetActive(true);
+                gameOver.SetActive(false);
                 break;
 
             case (GameController.State.Starting):
                 mainMenu.SetActive(false);
+                gameOver.SetActive(false);
                 break;
 
             case (GameController.State.Running):
-                mainMenu.SetActive(false);
                 break;
 
             case (GameController.State.GameOver):
-                mainMenu.SetActive(true);
+                gameOver.SetActive(true);
                 break;
 
         }
