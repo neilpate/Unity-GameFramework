@@ -20,14 +20,16 @@ public class GameController : MonoBehaviour
     // [ShowNonSerializedField]
     public State currentState;
 
-    // [ShowNonSerializedField]
-    public State nextState;
+    [ShowNonSerializedField]
+    State nextState;
 
-    public State previousState;
-
+    [ShowNonSerializedField]
+    State previousState;
 
     public delegate void StateChange(State state);
     public event StateChange StateChangeEvent;
+
+    public float ElapsedTime;
 
     public enum State
     {
@@ -82,6 +84,8 @@ public class GameController : MonoBehaviour
         SpawnPlayer();
         SpawnEnemies();
 
+        ElapsedTime = 0;
+
         ExitStartingState();
 
     }
@@ -95,11 +99,19 @@ public class GameController : MonoBehaviour
 
     void UpdateRunningState()
     {
+       
+        if (previousState != State.Running)
+        {
+            EnterRunningState();
+        }
+        
         //This is the main game loop when the game is running
         if (GameOver)
         {
             ExitRunningState();
         }
+
+        ElapsedTime += Time.deltaTime;
     }
     void EnterRunningState()
     {
