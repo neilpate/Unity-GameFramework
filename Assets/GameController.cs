@@ -171,6 +171,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void OnPlayerCaught()
+    {
+        GameOver = true;
+    }
+
 
     public void Start()
     {
@@ -215,6 +220,9 @@ public class GameController : MonoBehaviour
 
         var checkCaught = player.GetComponentInChildren<CheckCaught>();
         checkCaught.gameController = this;
+
+        checkCaught.CaughtEvent += OnPlayerCaught;
+        
     }
 
     void SpawnEnemies()

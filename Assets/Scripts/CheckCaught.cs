@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CheckCaught : MonoBehaviour
 {
+    public delegate void Caught();
+    public event Caught CaughtEvent;
+
+
  public GameController gameController;
 
     // Start is called before the first frame update
@@ -19,6 +23,7 @@ public class CheckCaught : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        CaughtEvent();
        // gameController.GameOver = true;
     }
 }
