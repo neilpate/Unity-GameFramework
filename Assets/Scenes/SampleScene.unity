@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: c56ba5cea6310234799883d7fb6294b9, type: 2}
 --- !u!1 &248325261
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &248325262
 Transform:
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 248325261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
-  m_LocalScale: {x: 10, y: 0.1, z: 10}
+  m_LocalScale: {x: 100, y: 0.1, z: 100}
   m_Children: []
   m_Father: {fileID: 1377144327}
   m_RootOrder: 0
@@ -2086,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 5269434464413426426}
     - target: {fileID: 3113208031620348524, guid: 004a1ee484f8d1f47a4d2c30e92ba521, type: 3}
       propertyPath: TimerMarkup
-      value: <mspace=1em>
+      value: <mspace=0.5em>
       objectReference: {fileID: 0}
     - target: {fileID: 7717397964349112306, guid: 004a1ee484f8d1f47a4d2c30e92ba521, type: 3}
       propertyPath: m_Name
@@ -2212,8 +2212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a37e0648506f5841b07bc8ab4892476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTemplate: {fileID: 3647013414858435023, guid: eeb072cf56070914db378ede44de6c7e, type: 3}
-  EnemyTemplate: {fileID: 7000321955969135119, guid: aed4401d84eaf004c8a9f3f39c66a16a, type: 3}
+  PlayerTemplate: {fileID: 8951640476330905719, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
+  EnemyTemplate: {fileID: 1387259255884993802, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
   GameOver: 0
   currentState: 0
   ElapsedTime: 0

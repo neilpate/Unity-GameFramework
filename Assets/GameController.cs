@@ -212,12 +212,19 @@ public class GameController : MonoBehaviour
     {
         player = Instantiate(PlayerTemplate, new Vector3(0, 2, 0), Quaternion.identity);
         player.name = "Player";
+
+        var checkCaught = player.GetComponentInChildren<CheckCaught>();
+        checkCaught.gameController = this;
     }
 
     void SpawnEnemies()
     {
-        enemy = Instantiate(EnemyTemplate, new Vector3(2, 2, 0), Quaternion.identity);
+        enemy = Instantiate(EnemyTemplate, new Vector3(10, 2, 0), Quaternion.identity);
         enemy.name = "Enemy";
+
+        var enemyAI = enemy.GetComponentInChildren<EnemyAI>();
+        enemyAI.gameController = this;
+        enemyAI.target = player.transform;
     }
 
     void DestroyPlayer()
