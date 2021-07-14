@@ -56,13 +56,10 @@ public class GUIController : MonoBehaviour
         }
     }
 
-
-
-
-
     // Update is called once per frame
     void Update()
     {
-        timer.text = $"{controller.ElapsedTime:F2} s";
+        //Monospace the elapsed time
+        timer.text = $"<mspace=0.5em>{controller.ElapsedTime:F2} s";
     }
 }
