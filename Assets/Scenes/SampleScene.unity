@@ -2334,8 +2334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a37e0648506f5841b07bc8ab4892476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnvironmentSettings: {fileID: 11400000, guid: 7ab26be56ab8a2b4a8b75be4d35965e1, type: 2}
   PlayerTemplate: {fileID: 8951640476330905719, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
   EnemyTemplate: {fileID: 1387259255884993802, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
+  enemyAISettings: {fileID: 11400000, guid: 693b0dad20830374591e550fdb034a80, type: 2}
   GameOver: 0
   currentState: 0
   ElapsedTime: 0

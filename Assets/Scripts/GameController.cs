@@ -1,16 +1,21 @@
 using NaughtyAttributes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    EnvironmentSettings EnvironmentSettings;
+    
     [SerializeField]
     GameObject PlayerTemplate;
 
     [SerializeField]
     GameObject EnemyTemplate;
+
+    [SerializeField]
+    AISettings enemyAISettings;
 
     public bool GameOver;
 
@@ -215,7 +220,13 @@ public class GameController : MonoBehaviour
 
     void SpawnPlayer()
     {
-        player = Instantiate(PlayerTemplate, new Vector3(0, 2, 0), Quaternion.identity);
+        var randomXPosition =  UnityEngine.Random.Range( -EnvironmentSettings.xSize/2, EnvironmentSettings.xSize / 2);
+        var randomZPosition =  UnityEngine.Random.Range(-EnvironmentSettings.zSize/2, EnvironmentSettings.zSize / 2);
+        var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
+        Debug.Log($"Spawning Player at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+
+        player = Instantiate(PlayerTemplate, initialPosition, Quaternion.identity);
+        
         player.name = "Player";
 
         var checkCaught = player.GetComponentInChildren<CheckCaught>();
@@ -227,12 +238,22 @@ public class GameController : MonoBehaviour
 
     void SpawnEnemies()
     {
-        enemy = Instantiate(EnemyTemplate, new Vector3(10, 2, 0), Quaternion.identity);
+        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
+        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
+        var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
+        Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+
+        enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
+        
         enemy.name = "Enemy";
 
         var enemyAI = enemy.GetComponentInChildren<EnemyAI>();
         enemyAI.gameController = this;
         enemyAI.target = player.transform;
+
+        var navMeshAgent = enemy.GetComponentInChildren<NavMeshAgent>();
+        navMeshAgent.speed = enemyAISettings.Speed;
+
     }
 
     void DestroyPlayer()

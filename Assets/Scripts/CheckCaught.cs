@@ -6,24 +6,11 @@ public class CheckCaught : MonoBehaviour
 {
     public delegate void Caught();
     public event Caught CaughtEvent;
-
-
- public GameController gameController;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
+    public GameController gameController;
 
     private void OnTriggerEnter(Collider other)
     {
         CaughtEvent();
-       // gameController.GameOver = true;
     }
 }

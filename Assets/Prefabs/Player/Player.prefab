@@ -118,7 +118,7 @@ MonoBehaviour:
   Head: {fileID: 7834878404314199986}
   Exclamations: {fileID: 2407280691481623145}
   UnthreatenedColour: {r: 0.08091495, g: 0.9528302, b: 0, a: 0}
-  ThreatenedColour: {r: 1, g: 0, b: 0, a: 0}
+  ThreatenedColour: {r: 1, g: 0.42477322, b: 0, a: 0}
 --- !u!1 &8951640476330905719
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,9 +68,8 @@ public class ThreatAssesment : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        threatened = false;
-
         //Debug.Log("Exited");
+        threatened = false;
     }
 
 
