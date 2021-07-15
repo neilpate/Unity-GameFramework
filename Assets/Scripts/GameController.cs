@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     GameObject Environment;
+
+    [SerializeField]
+    PlayerController PlayerController;
     
     [SerializeField]
     GameObject PlayerTemplate;
@@ -247,6 +250,8 @@ public class GameController : MonoBehaviour
         checkCaught.gameController = this;
 
         checkCaught.CaughtEvent += OnPlayerCaught;
+
+        PlayerController.Player = player;
         
     }
 

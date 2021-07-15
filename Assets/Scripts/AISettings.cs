@@ -7,6 +7,7 @@ public class AISettings : ScriptableObject
 {
     public enum AggressionLevel
     {
+        Passive,
         Lazy,
         Medium,
         NeverGivesUp
