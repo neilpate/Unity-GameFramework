@@ -730,7 +730,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &938910880
 PrefabInstance:
@@ -741,7 +741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5165188547798469130, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5165188547798469130, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1154,7 +1154,7 @@ Transform:
   - {fileID: 248325262}
   - {fileID: 1363765963}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1380713961 stripped
 Transform:
@@ -1215,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815623630177201606, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4815623630177201606, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1792,7 +1792,7 @@ Transform:
   - {fileID: 1208488428}
   - {fileID: 1380713961}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004520916
 GameObject:
@@ -2200,7 +2200,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4022851770494305073, guid: 842c610af68a46740bd6cd5476e38007, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4022851770494305073, guid: 842c610af68a46740bd6cd5476e38007, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2466,7 +2466,7 @@ MonoBehaviour:
   PlayerController: {fileID: 2229434515075544835}
   PlayerTemplate: {fileID: 8951640476330905719, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
   EnemyTemplate: {fileID: 1387259255884993802, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
-  enemyAISettings: {fileID: 11400000, guid: 9904ac44448cafd49b7e3aee7db782dc, type: 2}
+  enemyAISettings: {fileID: 11400000, guid: 33d97bc215447184c80f58b8d5122e6a, type: 2}
   GameOver: 0
   currentState: 0
   ElapsedTime: 0
