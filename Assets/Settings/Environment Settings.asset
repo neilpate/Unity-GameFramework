@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95782895b02a76142b621c0d29ae710a, type: 3}
   m_Name: Environment Settings
   m_EditorClassIdentifier: 
-  xSize: 100
-  zSize: 100
+  xSize: 50
+  zSize: 50

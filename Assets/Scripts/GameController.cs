@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     EnvironmentSettings EnvironmentSettings;
+
+    [SerializeField]
+    GameObject Environment;
     
     [SerializeField]
     GameObject PlayerTemplate;
@@ -186,6 +189,8 @@ public class GameController : MonoBehaviour
     {
         currentState = State.GameOver;
         nextState = State.NotStarted;
+
+        SetupWorld();
     }
 
 
@@ -215,6 +220,15 @@ public class GameController : MonoBehaviour
                 UpdateGameOverState();
                 break;
         }
+    }
+
+    void SetupWorld()
+    {
+        var floor = Environment.transform.Find("Floor").gameObject;
+        floor.transform.localScale = new Vector3(EnvironmentSettings.xSize, floor.transform.localScale.y, EnvironmentSettings.zSize);
+
+
+      //  Environment.GetComponen
     }
 
 

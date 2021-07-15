@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9698c7f6b51cca44f94f7300349c70e3, type: 3}
   m_Name: Aggressive Bot
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 20
   Aggression: 2
