@@ -34,8 +34,6 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
-    List<GameObject> munchies;
-
     public bool GameOver;
 
     GameObject player;
@@ -51,6 +49,9 @@ public class GameController : MonoBehaviour
 
     [ShowNonSerializedField]
     State previousState;
+
+    [ShowNonSerializedField]
+    int numberOfMunchies;
 
     public delegate void StateChange(State state);
     public event StateChange StateChangeEvent;
@@ -251,9 +252,10 @@ public class GameController : MonoBehaviour
     {
         foreach (var munchy in AllPossibleMunchies)
         {
-            var spawnChance = Random.value * Time.deltaTime * 100;
+            var randomPercentage = Random.value *  100;
+            var spawnChance = munchy.LiklihoodOfSpawningPercentPerSecond * Time.deltaTime;
 
-            if (spawnChance > 100 - munchy.LiklihoodOfSpawningPercentPerSecond)
+            if (randomPercentage < spawnChance )
             {
                 var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
                 var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
@@ -266,10 +268,11 @@ public class GameController : MonoBehaviour
 
                 newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
 
-                munchies.Add(newMunchy);
-
             }
         }
+
+        //Update total number of Munchies
+        numberOfMunchies = munchyContainer.transform.childCount;
     }
 
     void SetupWorld()

@@ -6,11 +6,15 @@ public class CheckCaught : MonoBehaviour
 {
     public delegate void Caught();
     public event Caught CaughtEvent;
-    
+
     public GameController gameController;
 
     private void OnTriggerEnter(Collider other)
     {
-        CaughtEvent();
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            CaughtEvent();
+        }
+
     }
 }
