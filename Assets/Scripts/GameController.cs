@@ -41,7 +41,6 @@ public class GameController : MonoBehaviour
 
     GameObject munchyContainer;
 
-    // [ShowNonSerializedField]
     public State currentState;
 
     [ShowNonSerializedField]
@@ -57,6 +56,8 @@ public class GameController : MonoBehaviour
     public event StateChange StateChangeEvent;
 
     public float ElapsedTime;
+
+    public int Score;
 
     public enum State
     {
@@ -216,6 +217,12 @@ public class GameController : MonoBehaviour
 
         munchyContainer = new GameObject();
         munchyContainer.name = "Munchy Container";
+
+    }
+
+    private void OnMunchedEvent(int value)
+    {
+        Score += value;
     }
 
 
@@ -252,15 +259,15 @@ public class GameController : MonoBehaviour
     {
         foreach (var munchy in AllPossibleMunchies)
         {
-            var randomPercentage = Random.value *  100;
+            var randomPercentage = Random.value * 100;
             var spawnChance = munchy.LiklihoodOfSpawningPercentPerSecond * Time.deltaTime;
 
-            if (randomPercentage < spawnChance )
+            if (randomPercentage < spawnChance)
             {
-                var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
-                var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
+                var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
+                var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
                 var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
-                Debug.Log($"Spawning Munchy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+                //       Debug.Log($"Spawning Munchy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
                 var newMunchy = Instantiate(MunchyTemplate, initialPosition, Quaternion.identity);
 
@@ -268,11 +275,18 @@ public class GameController : MonoBehaviour
 
                 newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
 
+            
+
             }
         }
 
         //Update total number of Munchies
         numberOfMunchies = munchyContainer.transform.childCount;
+    }
+
+    private void OnMunchyMunched(int value)
+    {
+        throw new System.NotImplementedException();
     }
 
     void SetupWorld()
@@ -284,30 +298,31 @@ public class GameController : MonoBehaviour
 
     void SpawnPlayer()
     {
-        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
-        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
+        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
+        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
         var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
-        Debug.Log($"Spawning Player at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+        //     Debug.Log($"Spawning Player at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         player = Instantiate(PlayerTemplate, initialPosition, Quaternion.identity);
 
         player.name = "Player";
 
         var checkCaught = player.GetComponentInChildren<CheckCaught>();
-        checkCaught.gameController = this;
 
         checkCaught.CaughtEvent += OnPlayerCaught;
 
         PlayerController.Player = player;
 
+        player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
+
     }
 
     void SpawnEnemies()
     {
-        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
-        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
+        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
+        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
         var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
-        Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+        //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
 

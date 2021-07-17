@@ -15,4 +15,4 @@ MonoBehaviour:
   Color: {r: 0.6745283, g: 1, b: 0.9740399, a: 0}
   PointsValue: 20
   LifeTimeInSeconds: 5
-  LiklihoodOfSpawningPercentPerSecond: 10
+  LiklihoodOfSpawningPercentPerSecond: 100

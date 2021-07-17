@@ -20,12 +20,19 @@ public class GUIController : MonoBehaviour
 
     TextMeshProUGUI timer;
 
+    TextMeshProUGUI score;
+
     // Start is called before the first frame update
     void Start()
     {
         controller.StateChangeEvent += OnGameStateChange;
 
-        timer = HUD.GetComponentInChildren<TextMeshProUGUI>();
+        var timerGameObject = HUD.transform.Find("Timer");
+        timer = timerGameObject.GetComponent<TextMeshProUGUI>();
+
+        var scoreGameObject = HUD.transform.Find("Score");
+        score = scoreGameObject.GetComponent<TextMeshProUGUI>();
+
     }
 
     private void OnGameStateChange(GameController.State state)
@@ -61,5 +68,7 @@ public class GUIController : MonoBehaviour
     {
         //Monospace the elapsed time
         timer.text = $"<mspace=0.5em>{controller.ElapsedTime:F2} s";
+
+        score.text = $"<mspace=0.5em>Score: {controller.Score}";
     }
 }
