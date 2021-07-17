@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,6 +8,9 @@ using UnityEngine.AI;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
+    GameSettings GameSettings;
+
+    [SerializeField]
     EnvironmentSettings EnvironmentSettings;
 
     [SerializeField]
@@ -13,7 +18,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     PlayerController PlayerController;
-    
+
     [SerializeField]
     GameObject PlayerTemplate;
 
@@ -21,12 +26,22 @@ public class GameController : MonoBehaviour
     GameObject EnemyTemplate;
 
     [SerializeField]
-    AISettings enemyAISettings;
+    GameObject MunchyTemplate;
+
+    [SerializeField]
+    AISettings AISettings;
+
+    [SerializeField]
+    MunchySettings[] AllPossibleMunchies;
+
+    List<GameObject> munchies;
 
     public bool GameOver;
 
     GameObject player;
     GameObject enemy;
+
+    GameObject munchyContainer;
 
     // [ShowNonSerializedField]
     public State currentState;
@@ -110,12 +125,12 @@ public class GameController : MonoBehaviour
 
     void UpdateRunningState()
     {
-       
+
         if (previousState != State.Running)
         {
             EnterRunningState();
         }
-        
+
         //This is the main game loop when the game is running
         if (GameOver)
         {
@@ -184,7 +199,10 @@ public class GameController : MonoBehaviour
 
     void OnPlayerCaught()
     {
-        GameOver = true;
+        if (!GameSettings.GodMode)
+        {
+            GameOver = true;
+        }
     }
 
 
@@ -194,6 +212,9 @@ public class GameController : MonoBehaviour
         nextState = State.NotStarted;
 
         SetupWorld();
+
+        munchyContainer = new GameObject();
+        munchyContainer.name = "Munchy Container";
     }
 
 
@@ -217,6 +238,7 @@ public class GameController : MonoBehaviour
 
             case State.Running:
                 UpdateRunningState();
+                SpawnMunchies();
                 break;
 
             case State.GameOver:
@@ -225,25 +247,47 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void SpawnMunchies()
+    {
+        foreach (var munchy in AllPossibleMunchies)
+        {
+            var spawnChance = Random.value * Time.deltaTime * 100;
+
+            if (spawnChance > 100 - munchy.LiklihoodOfSpawningPercentPerSecond)
+            {
+                var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
+                var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
+                var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
+                Debug.Log($"Spawning Munchy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+
+                var newMunchy = Instantiate(MunchyTemplate, initialPosition, Quaternion.identity);
+
+                newMunchy.transform.parent = munchyContainer.transform;
+
+                newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
+
+                munchies.Add(newMunchy);
+
+            }
+        }
+    }
+
     void SetupWorld()
     {
         var floor = Environment.transform.Find("Floor").gameObject;
         floor.transform.localScale = new Vector3(EnvironmentSettings.xSize, floor.transform.localScale.y, EnvironmentSettings.zSize);
 
-
-      //  Environment.GetComponen
     }
-
 
     void SpawnPlayer()
     {
-        var randomXPosition =  UnityEngine.Random.Range( -EnvironmentSettings.xSize/2, EnvironmentSettings.xSize / 2);
-        var randomZPosition =  UnityEngine.Random.Range(-EnvironmentSettings.zSize/2, EnvironmentSettings.zSize / 2);
+        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2, EnvironmentSettings.xSize / 2);
+        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2, EnvironmentSettings.zSize / 2);
         var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
         Debug.Log($"Spawning Player at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         player = Instantiate(PlayerTemplate, initialPosition, Quaternion.identity);
-        
+
         player.name = "Player";
 
         var checkCaught = player.GetComponentInChildren<CheckCaught>();
@@ -252,7 +296,7 @@ public class GameController : MonoBehaviour
         checkCaught.CaughtEvent += OnPlayerCaught;
 
         PlayerController.Player = player;
-        
+
     }
 
     void SpawnEnemies()
@@ -263,7 +307,7 @@ public class GameController : MonoBehaviour
         Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
-        
+
         enemy.name = "Enemy";
 
         var enemyAI = enemy.GetComponentInChildren<EnemyAI>();
@@ -271,7 +315,7 @@ public class GameController : MonoBehaviour
         enemyAI.target = player.transform;
 
         var navMeshAgent = enemy.GetComponentInChildren<NavMeshAgent>();
-        navMeshAgent.speed = enemyAISettings.Speed;
+        navMeshAgent.speed = AISettings.Speed;
 
     }
 
