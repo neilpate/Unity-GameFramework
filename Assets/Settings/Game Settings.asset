@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   GodMode: 1
+  mainMusic: {fileID: 8300000, guid: 362de9d7447e6f2499f92a4e4f94900e, type: 3}

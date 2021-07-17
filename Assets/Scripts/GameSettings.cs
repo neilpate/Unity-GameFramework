@@ -6,4 +6,6 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     public bool GodMode = false;
+
+    public AudioClip mainMusic;
 }
