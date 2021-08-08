@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEditor;
 
 
 public class GameController : MonoBehaviour
@@ -37,7 +38,8 @@ public class GameController : MonoBehaviour
     public bool GameOver;
 
     GameObject player;
-    GameObject enemy;
+
+    List<GameObject> enemies;
 
     GameObject munchyContainer;
 
@@ -51,6 +53,9 @@ public class GameController : MonoBehaviour
 
     [ShowNonSerializedField]
     int numberOfMunchies;
+
+    [SerializeField]
+    int NewEnemyScore;
 
     public delegate void StateChange(State state);
     public event StateChange StateChangeEvent;
@@ -179,7 +184,14 @@ public class GameController : MonoBehaviour
 
     public void OnGameOverQuitClick()
     {
-        ExitGameOverState(false);
+        //  ExitGameOverState(false);
+        Application.Quit();
+
+#if UNITY_EDITOR
+          EditorApplication.isPlaying = false;
+#endif
+
+
     }
 
 
@@ -218,11 +230,19 @@ public class GameController : MonoBehaviour
         munchyContainer = new GameObject();
         munchyContainer.name = "Munchy Container";
 
+        enemies = new List<GameObject>();
+
     }
 
     private void OnMunchedEvent(int value)
     {
         Score += value;
+
+        if (Score > NewEnemyScore)
+        {
+            SpawnEnemies();
+
+        }
     }
 
 
@@ -275,7 +295,7 @@ public class GameController : MonoBehaviour
 
                 newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
 
-            
+
 
             }
         }
@@ -293,6 +313,7 @@ public class GameController : MonoBehaviour
     {
         var floor = Environment.transform.Find("Floor").gameObject;
         floor.transform.localScale = new Vector3(EnvironmentSettings.xSize, floor.transform.localScale.y, EnvironmentSettings.zSize);
+
 
     }
 
@@ -324,7 +345,9 @@ public class GameController : MonoBehaviour
         var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
         //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
-        enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
+        var enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
+
+        enemies.Add(enemy);
 
         enemy.name = "Enemy";
 
@@ -344,7 +367,10 @@ public class GameController : MonoBehaviour
 
     void DestroyEnemies()
     {
-        Destroy(enemy);
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 
 }
