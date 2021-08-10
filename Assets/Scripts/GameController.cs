@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
+    [SerializeField]
+    Animator PlayerAnimator;
+
     public bool GameOver;
 
     GameObject player;
@@ -63,6 +66,9 @@ public class GameController : MonoBehaviour
     public float ElapsedTime;
 
     public int Score;
+
+    [SerializeField]
+    bool walking;
 
     public enum State
     {
@@ -145,6 +151,8 @@ public class GameController : MonoBehaviour
         }
 
         ElapsedTime += Time.deltaTime;
+
+        PlayerAnimator.SetBool("Walking", walking);
     }
     void EnterRunningState()
     {
