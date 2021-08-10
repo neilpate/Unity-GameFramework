@@ -145,7 +145,18 @@ public class GameController : MonoBehaviour
         }
 
         ElapsedTime += Time.deltaTime;
+
+        CheckPlayerFallenOffWorld();
     }
+
+    private void CheckPlayerFallenOffWorld()
+    {
+        if (player.transform.position.y < -10)
+        {
+            GameOver = true;
+        }
+    }
+
     void EnterRunningState()
     {
         StateChangeEvent(State.Running);
