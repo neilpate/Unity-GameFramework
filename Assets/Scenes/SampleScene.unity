@@ -486,11 +486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482424815}
   m_CullTransparentMesh: 1
---- !u!95 &528967150 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6431927799252769276, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
-  m_PrefabInstance: {fileID: 938910880}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721451760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,6 +1989,11 @@ RectTransform:
   m_AnchoredPosition: {x: -673, y: 383}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &2082362538 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6344496357785640797, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
+  m_PrefabInstance: {fileID: 938910880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2099260244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,7 +2635,7 @@ MonoBehaviour:
   AISettings: {fileID: 11400000, guid: 9904ac44448cafd49b7e3aee7db782dc, type: 2}
   AllPossibleMunchies:
   - {fileID: 11400000, guid: 2801fb7ab69e6fe4fa15c4c9d72f553d, type: 2}
-  PlayerAnimator: {fileID: 528967150}
+  PlayerAnimator: {fileID: 2082362538}
   GameOver: 0
   currentState: 0
   NewEnemyScore: 200

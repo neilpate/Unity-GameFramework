@@ -152,7 +152,7 @@ public class GameController : MonoBehaviour
 
         ElapsedTime += Time.deltaTime;
 
-   //     PlayerAnimator.SetBool("Walking", walking);
+        PlayerAnimator.SetBool("Walking", walking);
     }
     void EnterRunningState()
     {
