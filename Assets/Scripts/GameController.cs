@@ -35,8 +35,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
-    [SerializeField]
-    Animator PlayerAnimator;
+ //   [SerializeField]
+    Animator playerAnimator;
 
     public bool GameOver;
 
@@ -152,7 +152,9 @@ public class GameController : MonoBehaviour
 
         ElapsedTime += Time.deltaTime;
 
-     //   PlayerAnimator.SetBool("Walking", walking);
+        playerAnimator.SetBool("Walking", walking);
+      
+
     }
     void EnterRunningState()
     {
@@ -343,6 +345,9 @@ public class GameController : MonoBehaviour
         PlayerController.Player = player;
 
         player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
+
+        playerAnimator = player.GetComponentInChildren<Animator>();
+      //  playerAnimator.Rebind();
 
     }
 
