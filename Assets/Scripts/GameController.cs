@@ -347,7 +347,6 @@ public class GameController : MonoBehaviour
         player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
 
         playerAnimator = player.GetComponentInChildren<Animator>();
-      //  playerAnimator.Rebind();
 
     }
 
