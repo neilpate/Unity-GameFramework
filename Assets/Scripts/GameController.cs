@@ -42,6 +42,11 @@ public class GameController : MonoBehaviour
 
     GameObject player;
 
+    Rigidbody rb;
+
+    [ShowNonSerializedField]
+    float velocityMagnitude;
+
     List<GameObject> enemies;
 
     GameObject munchyContainer;
@@ -152,10 +157,27 @@ public class GameController : MonoBehaviour
 
         ElapsedTime += Time.deltaTime;
 
+        CheckWalking();
+
         playerAnimator.SetBool("Walking", walking);
       
 
     }
+
+    private void CheckWalking()
+    {
+        velocityMagnitude = rb.velocity.magnitude * 1E6f;
+
+        if (velocityMagnitude > 0.1)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+    }
+
     void EnterRunningState()
     {
         StateChangeEvent(State.Running);
@@ -347,6 +369,8 @@ public class GameController : MonoBehaviour
         player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
 
         playerAnimator = player.GetComponentInChildren<Animator>();
+
+        rb = player.GetComponent<Rigidbody>();
 
     }
 
