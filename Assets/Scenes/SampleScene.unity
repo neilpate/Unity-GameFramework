@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 248325261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
-  m_LocalScale: {x: 50, y: 0.1, z: 50}
+  m_LocalScale: {x: 25, y: 0.1, z: 25}
   m_Children: []
   m_Father: {fileID: 1377144327}
   m_RootOrder: 0
@@ -1536,13 +1536,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: -0.27043498, y: 0.65367496, z: -0.270761, w: -0.6528878}
-  m_LocalPosition: {x: 35, y: 25, z: 0}
+  m_LocalRotation: {x: -0.3379134, y: 0.0014126599, z: -0.0005065631, w: -0.9411761}
+  m_LocalPosition: {x: 0.9180952, y: 10.953218, z: -18.353903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 269.931, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 274.26, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,11 +1989,6 @@ RectTransform:
   m_AnchoredPosition: {x: -673, y: 383}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &2082362538 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6344496357785640797, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
-  m_PrefabInstance: {fileID: 938910880}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2099260244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,10 +2627,9 @@ MonoBehaviour:
   PlayerTemplate: {fileID: 8951640476330905719, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
   EnemyTemplate: {fileID: 1387259255884993802, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
   MunchyTemplate: {fileID: 3520624268777954429, guid: bd618f47ff7fa2b468086ed075660fe5, type: 3}
-  AISettings: {fileID: 11400000, guid: 9904ac44448cafd49b7e3aee7db782dc, type: 2}
+  AISettings: {fileID: 11400000, guid: 693b0dad20830374591e550fdb034a80, type: 2}
   AllPossibleMunchies:
   - {fileID: 11400000, guid: 2801fb7ab69e6fe4fa15c4c9d72f553d, type: 2}
-  PlayerAnimator: {fileID: 2082362538}
   GameOver: 0
   currentState: 0
   NewEnemyScore: 200

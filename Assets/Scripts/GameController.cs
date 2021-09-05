@@ -354,7 +354,7 @@ public class GameController : MonoBehaviour
     {
         var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
         var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
-        var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
+        var initialPosition = new Vector3(randomXPosition, 0.5f, randomZPosition);
         //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         var enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
