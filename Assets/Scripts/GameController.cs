@@ -35,9 +35,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
+ //   [SerializeField]
+    Animator playerAnimator;
+
     public bool GameOver;
 
     GameObject player;
+
+    Rigidbody rb;
+
+    [ShowNonSerializedField]
+    float velocityMagnitude;
 
     List<GameObject> enemies;
 
@@ -63,6 +71,9 @@ public class GameController : MonoBehaviour
     public float ElapsedTime;
 
     public int Score;
+
+    [SerializeField]
+    bool walking;
 
     public enum State
     {
@@ -147,6 +158,12 @@ public class GameController : MonoBehaviour
         ElapsedTime += Time.deltaTime;
 
         CheckPlayerFallenOffWorld();
+
+        CheckWalking();
+
+        playerAnimator.SetBool("Walking", walking);
+      
+
     }
 
     private void CheckPlayerFallenOffWorld()
@@ -154,6 +171,21 @@ public class GameController : MonoBehaviour
         if (player.transform.position.y < -10)
         {
             GameOver = true;
+        }
+    }
+
+
+    private void CheckWalking()
+    {
+        velocityMagnitude = rb.velocity.magnitude * 1E6f;
+
+        if (velocityMagnitude > 0.1)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
         }
     }
 
@@ -347,13 +379,17 @@ public class GameController : MonoBehaviour
 
         player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
 
+        playerAnimator = player.GetComponentInChildren<Animator>();
+
+        rb = player.GetComponent<Rigidbody>();
+
     }
 
     void SpawnEnemies()
     {
         var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
         var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
-        var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
+        var initialPosition = new Vector3(randomXPosition, 0.5f, randomZPosition);
         //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
         var enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);

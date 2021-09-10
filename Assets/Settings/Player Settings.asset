@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Settings
   m_EditorClassIdentifier: 
   RotationSpeedDegreesPerSecond: 360
-  ForwardSpeedMetersPerSecond: 20
+  ForwardSpeedMetersPerSecond: 5
