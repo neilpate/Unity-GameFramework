@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShaderController : MonoBehaviour
+public class OffsettingCheckerboardController : MonoBehaviour
 {
     Material material;
 

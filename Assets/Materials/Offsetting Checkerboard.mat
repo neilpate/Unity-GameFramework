@@ -33,7 +33,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Angle: 41.736897
+    - Angle: 90.81351
     - Time: 28.62
     m_Colors: []
   m_BuildTextureStacks: []
