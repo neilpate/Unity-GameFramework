@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
- //   [SerializeField]
+    //   [SerializeField]
     Animator playerAnimator;
 
     public bool GameOver;
@@ -162,7 +162,7 @@ public class GameController : MonoBehaviour
         CheckWalking();
 
         playerAnimator.SetBool("Walking", walking);
-      
+
 
     }
 
@@ -231,7 +231,7 @@ public class GameController : MonoBehaviour
         Application.Quit();
 
 #if UNITY_EDITOR
-          EditorApplication.isPlaying = false;
+        EditorApplication.isPlaying = false;
 #endif
 
 
@@ -336,8 +336,15 @@ public class GameController : MonoBehaviour
 
                 newMunchy.transform.parent = munchyContainer.transform;
 
-                newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
 
+                newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
+                //  var material = newMunchy.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+
+                var shader = Shader.Find("Shader Graphs/Border");
+                var material = new Material(shader);
+                material.SetColor("Colour", munchy.Color);
+
+                newMunchy.GetComponentInChildren<MeshRenderer>().material = material;
 
 
             }
