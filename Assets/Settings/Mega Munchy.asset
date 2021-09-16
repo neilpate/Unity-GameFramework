@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cf46d1ef79d494b833a9b5ce804676, type: 3}
   m_Name: Mega Munchy
   m_EditorClassIdentifier: 
-  Color: {r: 0.95869803, g: 1, b: 0, a: 0}
+  Color: {r: 0.8018868, g: 0, b: 0.40303954, a: 0}
   PointsValue: 1000
-  LifeTimeInSeconds: 5
-  LiklihoodOfSpawningPercentPerSecond: 10
+  LifeTimeInSeconds: 100
+  LiklihoodOfSpawningPercentPerSecond: 100

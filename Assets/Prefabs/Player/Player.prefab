@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1281386233717234292}
   - component: {fileID: 110477775417552415}
   - component: {fileID: 6234526900289029297}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Check Caught
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 8556092260788180680}
   - component: {fileID: 113155959507768140}
   - component: {fileID: 3785868572553707661}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Threat Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 81916782612852984}
   - component: {fileID: 2681976325873206379}
   - component: {fileID: 2719461678722400793}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Munching
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19606a934dca1914dbbee38d14edbd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EatMunchy: {fileID: 2439417089559509731}
+  EatMunchy: {fileID: 0}
   AudioClips:
   - {fileID: 8300000, guid: e6570f21bf7d0464d8c07e66294c5f07, type: 3}
   - {fileID: 8300000, guid: 0086540dfaf6b7f45871206000ff0918, type: 3}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6660905388616343277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,9 +302,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7338503141367893297}
-  - component: {fileID: 2439417089559509731}
   - component: {fileID: 5092118168701878969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Check Munchy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,19 +324,6 @@ Transform:
   m_Father: {fileID: 5165188547798469130}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2439417089559509731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8806509800605880642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be087e0988e8fa4595bd1b9363223ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSource: {fileID: 2681976325873206379}
 --- !u!65 &5092118168701878969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -362,8 +348,7 @@ GameObject:
   - component: {fileID: 5165188547798469130}
   - component: {fileID: 6558562545361921290}
   - component: {fileID: -6900087456179122843}
-  - component: {fileID: 6344496357785640797}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,9 +410,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5165188547798469130}
     m_Modifications:
+    - target: {fileID: 411648402932011483, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024798856704555856, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550509732033030994, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788530935244595464, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4021822157897122233, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
       propertyPath: m_Name
       value: Player Art
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021822157897122233, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4367279277560863491, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
       propertyPath: m_RootOrder
@@ -472,6 +477,54 @@ PrefabInstance:
     - target: {fileID: 4367279277560863491, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534366861913568729, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830079803258082363, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149141126657214660, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033277714633998191, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536040675726328279, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6681822706195505613, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233321681274984962, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415115615494980994, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992805363859980564, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162448777547317355, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623124151328430962, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639027447958965141, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df721b43e25863b4d888c4817dad7ba7, type: 3}

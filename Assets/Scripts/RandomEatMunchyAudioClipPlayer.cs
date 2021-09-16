@@ -20,7 +20,7 @@ public class RandomEatMunchyAudioClipPlayer : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        EatMunchy.MunchedEvent += OnMunched;
+      //  EatMunchy.MunchedEvent += OnMunched;
 
     }
 

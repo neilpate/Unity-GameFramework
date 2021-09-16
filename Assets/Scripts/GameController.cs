@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     MunchySettings[] AllPossibleMunchies;
 
- //   [SerializeField]
+    //   [SerializeField]
     Animator playerAnimator;
 
     public bool GameOver;
@@ -74,6 +74,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     bool walking;
+
+    List<Munchy> munchies;
 
     public enum State
     {
@@ -162,7 +164,7 @@ public class GameController : MonoBehaviour
         CheckWalking();
 
         playerAnimator.SetBool("Walking", walking);
-      
+
 
     }
 
@@ -218,7 +220,9 @@ public class GameController : MonoBehaviour
 
         DestroyPlayer();
         DestroyEnemies();
+        DestroyMunchies();
     }
+
 
     public void OnGameOverPlayAgainClick()
     {
@@ -231,7 +235,7 @@ public class GameController : MonoBehaviour
         Application.Quit();
 
 #if UNITY_EDITOR
-          EditorApplication.isPlaying = false;
+        EditorApplication.isPlaying = false;
 #endif
 
 
@@ -272,14 +276,22 @@ public class GameController : MonoBehaviour
 
         munchyContainer = new GameObject();
         munchyContainer.name = "Munchy Container";
+        munchies = new List<Munchy>();
 
         enemies = new List<GameObject>();
 
+
+
     }
 
-    private void OnMunchedEvent(int value)
+    private void OnMunchyEaten(MunchySettings settings)
     {
-        Score += value;
+        //Start to play the sound
+
+
+        Score += settings.PointsValue;
+
+
 
         if (Score > NewEnemyScore)
         {
@@ -320,25 +332,16 @@ public class GameController : MonoBehaviour
 
     private void SpawnMunchies()
     {
-        foreach (var munchy in AllPossibleMunchies)
+        foreach (var munchySettings in AllPossibleMunchies)
         {
             var randomPercentage = Random.value * 100;
-            var spawnChance = munchy.LiklihoodOfSpawningPercentPerSecond * Time.deltaTime;
+            var spawnChance = munchySettings.LiklihoodOfSpawningPercentPerSecond * Time.deltaTime;
 
             if (randomPercentage < spawnChance)
             {
-                var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
-                var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
-                var initialPosition = new Vector3(randomXPosition, 2, randomZPosition);
-                //       Debug.Log($"Spawning Munchy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
-
-                var newMunchy = Instantiate(MunchyTemplate, initialPosition, Quaternion.identity);
-
-                newMunchy.transform.parent = munchyContainer.transform;
-
-                newMunchy.GetComponent<AutoDestroy>().LifeTimeInSeconds = munchy.LifeTimeInSeconds;
-
-
+                var munchy = new Munchy(MunchyTemplate, munchySettings, munchyContainer);
+                munchy.Eaten += OnMunchyEaten;
+                munchies.Add(munchy);
 
             }
         }
@@ -347,10 +350,7 @@ public class GameController : MonoBehaviour
         numberOfMunchies = munchyContainer.transform.childCount;
     }
 
-    private void OnMunchyMunched(int value)
-    {
-        throw new System.NotImplementedException();
-    }
+
 
     void SetupWorld()
     {
@@ -377,7 +377,7 @@ public class GameController : MonoBehaviour
 
         PlayerController.Player = player;
 
-        player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
+     //   player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
 
         playerAnimator = player.GetComponentInChildren<Animator>();
 
@@ -418,6 +418,10 @@ public class GameController : MonoBehaviour
         {
             Destroy(enemy);
         }
+    }
+    private void DestroyMunchies()
+    {
+        munchies.Clear();
     }
 
 }

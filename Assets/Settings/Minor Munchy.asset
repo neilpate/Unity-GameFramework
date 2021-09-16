@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cf46d1ef79d494b833a9b5ce804676, type: 3}
   m_Name: Minor Munchy
   m_EditorClassIdentifier: 
-  Color: {r: 0.6745283, g: 1, b: 0.9740399, a: 0}
+  Color: {r: 0, g: 1, b: 0.9233861, a: 0}
   PointsValue: 20
-  LifeTimeInSeconds: 5
+  LifeTimeInSeconds: 100
   LiklihoodOfSpawningPercentPerSecond: 100

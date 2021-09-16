@@ -7,8 +7,8 @@ public class EatMunchy : MonoBehaviour
     [SerializeField]
     AudioSource AudioSource;
     
-    public delegate void Munched(int value);
-    public event Munched MunchedEvent;
+ //   public delegate void Munched(int value);
+ //   public event Munched MunchedEvent;
 
     int munchyLayer;
 
@@ -19,18 +19,21 @@ public class EatMunchy : MonoBehaviour
         munchyLayer = LayerMask.NameToLayer("Munchy");
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == munchyLayer)
-        {
-            AudioSource.Play();
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer == munchyLayer)
+    //    {
+    //        AudioSource.Play();
+
+    //        var other.gameObject.GetComponentInChildren<MunchyEaten>().Eaten();
+    //     //  other.gameObject
+
+    //       // MunchedEvent(100);
             
-            MunchedEvent(100);
-            
-            //It would be nice to trigger some kind of destroy animation or sound
-            Destroy(other.gameObject);
-        }
+    //        //It would be nice to trigger some kind of destroy animation or sound
+    //        Destroy(other.gameObject);
+    //    }
 
 
-    }
+    //}
 }

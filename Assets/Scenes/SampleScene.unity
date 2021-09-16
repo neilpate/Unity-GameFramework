@@ -791,7 +791,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7547051336949772593, guid: bd618f47ff7fa2b468086ed075660fe5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd618f47ff7fa2b468086ed075660fe5, type: 3}
 --- !u!1001 &938910880
 PrefabInstance:
@@ -2630,6 +2631,7 @@ MonoBehaviour:
   AISettings: {fileID: 11400000, guid: 9904ac44448cafd49b7e3aee7db782dc, type: 2}
   AllPossibleMunchies:
   - {fileID: 11400000, guid: 2801fb7ab69e6fe4fa15c4c9d72f553d, type: 2}
+  - {fileID: 11400000, guid: 224788d0891a2854e9ef24b28a0dd498, type: 2}
   GameOver: 0
   currentState: 0
   NewEnemyScore: 200
