@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
     List<Munchy> munchies;
 
     RandomEatMunchyAudioClipPlayer randomEatMunchyAudioClip;
-    private readonly int MAX_ENEMIES = 7;
+    private readonly int MAX_ENEMIES = 31;
 
     public enum State
     {
@@ -364,8 +364,8 @@ public class GameController : MonoBehaviour
 
     void SetupWorld()
     {
-        var floor = Environment.transform.Find("Floor").gameObject;
-        floor.transform.localScale = new Vector3(EnvironmentSettings.xSize, floor.transform.localScale.y, EnvironmentSettings.zSize);
+      //  var floor = Environment.transform.Find("Floor").gameObject;
+      //  floor.transform.localScale = new Vector3(EnvironmentSettings.xSize, floor.transform.localScale.y, EnvironmentSettings.zSize);
 
 
     }
