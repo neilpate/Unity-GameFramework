@@ -77,6 +77,8 @@ public class GameController : MonoBehaviour
 
     List<Munchy> munchies;
 
+    RandomEatMunchyAudioClipPlayer randomEatMunchyAudioClip;
+
     public enum State
     {
         NotStarted,
@@ -291,6 +293,8 @@ public class GameController : MonoBehaviour
 
         Score += settings.PointsValue;
 
+        randomEatMunchyAudioClip.PlaySound();
+
 
 
         if (Score > NewEnemyScore)
@@ -382,6 +386,9 @@ public class GameController : MonoBehaviour
         playerAnimator = player.GetComponentInChildren<Animator>();
 
         rb = player.GetComponent<Rigidbody>();
+
+        randomEatMunchyAudioClip = player.GetComponentInChildren<RandomEatMunchyAudioClipPlayer>();
+
 
     }
 

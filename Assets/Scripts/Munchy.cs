@@ -31,8 +31,8 @@ public class Munchy
 
         gameObject.GetComponentInChildren<MeshRenderer>().material = material;
 
-
         gameObject.GetComponent<MunchyEatenDetection>().munchy = this;
+
     
     }
 
