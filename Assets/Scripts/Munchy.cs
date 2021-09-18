@@ -46,6 +46,11 @@ public class Munchy
         UnityEngine.Object.Destroy(gameObject);
     }
 
+    public void Destroy()
+    {
+        UnityEngine.Object.Destroy(gameObject);
+    }
+
 
 
 

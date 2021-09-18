@@ -133,6 +133,7 @@ public class GameController : MonoBehaviour
         SpawnEnemies();
 
         ElapsedTime = 0;
+        Score = 0;
 
         ExitStartingState();
 
@@ -428,6 +429,11 @@ public class GameController : MonoBehaviour
     }
     private void DestroyMunchies()
     {
+        foreach (var munchy in munchies)
+        {
+            munchy.Destroy();
+        }
+        
         munchies.Clear();
     }
 
