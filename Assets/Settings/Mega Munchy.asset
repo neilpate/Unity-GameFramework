@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Color: {r: 0.8018868, g: 0, b: 0.40303954, a: 0}
   PointsValue: 1000
-  LifeTimeInSeconds: 100
-  LiklihoodOfSpawningPercentPerSecond: 100
+  LifeTimeInSeconds: 10
+  LiklihoodOfSpawningPercentPerSecond: 10
