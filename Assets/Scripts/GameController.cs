@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
     List<GameObject> enemies;
 
     GameObject munchyContainer;
+    GameObject enemiesContainer;
 
     public State currentState;
 
@@ -78,6 +79,7 @@ public class GameController : MonoBehaviour
     List<Munchy> munchies;
 
     RandomEatMunchyAudioClipPlayer randomEatMunchyAudioClip;
+    private readonly int MAX_ENEMIES = 7;
 
     public enum State
     {
@@ -281,6 +283,9 @@ public class GameController : MonoBehaviour
         munchyContainer.name = "Munchy Container";
         munchies = new List<Munchy>();
 
+        enemiesContainer = new GameObject();
+        enemiesContainer.name = "Enemy Container";
+
         enemies = new List<GameObject>();
 
 
@@ -382,7 +387,7 @@ public class GameController : MonoBehaviour
 
         PlayerController.Player = player;
 
-     //   player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
+        //   player.GetComponentInChildren<EatMunchy>().MunchedEvent += OnMunchedEvent;
 
         playerAnimator = player.GetComponentInChildren<Animator>();
 
@@ -395,24 +400,28 @@ public class GameController : MonoBehaviour
 
     void SpawnEnemies()
     {
-        var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
-        var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
-        var initialPosition = new Vector3(randomXPosition, 0.5f, randomZPosition);
-        //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
+        if (enemies.Count < MAX_ENEMIES)
+        {
+            var randomXPosition = UnityEngine.Random.Range(-EnvironmentSettings.xSize / 2 + 1, EnvironmentSettings.xSize / 2 - 1);
+            var randomZPosition = UnityEngine.Random.Range(-EnvironmentSettings.zSize / 2 + 1, EnvironmentSettings.zSize / 2 - 1);
+            var initialPosition = new Vector3(randomXPosition, 0.5f, randomZPosition);
+            //  Debug.Log($"Spawning Enemy at x:{randomXPosition:F0}, z:{randomZPosition:F0}");
 
-        var enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
+            var enemy = Instantiate(EnemyTemplate, initialPosition, Quaternion.identity);
+            enemy.transform.parent = enemiesContainer.transform;
 
-        enemies.Add(enemy);
+            enemies.Add(enemy);
 
-        enemy.name = "Enemy";
+            enemy.name = "Enemy";
 
-        var enemyAI = enemy.GetComponentInChildren<EnemyAI>();
-        enemyAI.gameController = this;
-        enemyAI.target = player.transform;
+            var enemyAI = enemy.GetComponentInChildren<EnemyAI>();
+            enemyAI.gameController = this;
+            enemyAI.target = player.transform;
 
-        var navMeshAgent = enemy.GetComponentInChildren<NavMeshAgent>();
-        navMeshAgent.speed = AISettings.Speed;
+            var navMeshAgent = enemy.GetComponentInChildren<NavMeshAgent>();
+            navMeshAgent.speed = AISettings.Speed;
 
+        }
     }
 
     void DestroyPlayer()
@@ -433,7 +442,7 @@ public class GameController : MonoBehaviour
         {
             munchy.Destroy();
         }
-        
+
         munchies.Clear();
     }
 

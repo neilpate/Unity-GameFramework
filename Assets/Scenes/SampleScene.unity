@@ -2286,7 +2286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &2138677392
 Light:
   m_ObjectHideFlags: 0
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   PlayerTemplate: {fileID: 8951640476330905719, guid: fcf7618bb894e1841917fdffde08fd5b, type: 3}
   EnemyTemplate: {fileID: 1387259255884993802, guid: ad6d828a071f80b4d9d897627bafa2bc, type: 3}
   MunchyTemplate: {fileID: 3520624268777954429, guid: bd618f47ff7fa2b468086ed075660fe5, type: 3}
-  AISettings: {fileID: 11400000, guid: 7b525b69a916cdb45b4ba66a86cc638e, type: 2}
+  AISettings: {fileID: 11400000, guid: 9904ac44448cafd49b7e3aee7db782dc, type: 2}
   AllPossibleMunchies:
   - {fileID: 11400000, guid: 2801fb7ab69e6fe4fa15c4c9d72f553d, type: 2}
   - {fileID: 11400000, guid: 224788d0891a2854e9ef24b28a0dd498, type: 2}
