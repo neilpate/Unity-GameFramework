@@ -25,9 +25,18 @@ public class Munchy
 
         this.settings = settings;
 
-        var shader = Shader.Find("Shader Graphs/Border");
+        //Previous shader
+        //var shader = Shader.Find("Shader Graphs/Border");
+        //var material = new Material(shader);
+        //material.SetColor("Colour", settings.Color);
+
+        var shader = Shader.Find("Shader Graphs/Simple Glow");
         var material = new Material(shader);
-        material.SetColor("Colour", settings.Color);
+       
+        //Note, variable cannot have a space in the name!
+        material.SetColor("GlowColour", settings.Color);
+
+     //   Debug.Log($"Spawning munchy. R={settings.Color.r} G={settings.Color.g} B={settings.Color.b} A={settings.Color.a}");
 
         gameObject.GetComponentInChildren<MeshRenderer>().material = material;
 
